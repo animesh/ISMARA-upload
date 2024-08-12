@@ -1,3 +1,16 @@
+# eg
+cp ../TK*.fq.gz .
+rename _2.fq.gz _R2.fastq.gz *
+rename _1.fq.gz _R1.fastq.gz *
+git clone https://github.com/animesh/ISMARA-upload
+mv ISMARA-upload/* .
+mv ISMARA-upload/.* .
+python3 ismara_uploader.py
+ls -1 $PWD/*gz > filez.txt
+nohup python3 ismara_uploader.py -e animesh.sharma@ntnu.no -p "TK at different time points and subjects" -t rnaseq -o hg19 --mirna  --file-list filez.txt &>ismara_uploader.out &
+tail -f ismara_uploader.out
+
+
 # Upload client for the ISMARA web-service (www.ismara.unibas.ch)
 
 This is a python script which uploads your files to the ISMARA
